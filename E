@@ -1,0 +1,208 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*Salutation1();
+            Salutation2("Hello ", "World!");
+            Console.WriteLine(PI());
+            string str = "Long long string";
+            Console.WriteLine(TrimStr(str, 5));
+            int[,] matrix = { { 5, 7 }, { -4, 1 } };
+            Console.WriteLine("det = " + Determinant(matrix));
+            //
+            int radius;
+            Console.WriteLine("Input radius:");
+            radius = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("len {0}", circ_len(radius));
+            Console.WriteLine("square {0}", circ_sq(radius));
+            //
+            int a = 5, b = 6;
+            Console.WriteLine("a = {0}", a);
+            addval(a, b);
+            Console.WriteLine("a = {0} after val", a);
+            addref(ref a, b);
+            Console.WriteLine("a = {0} after ref", a);
+            //
+            string fam;
+            Console.WriteLine("Input surname:");
+            fam = Console.ReadLine();
+            Console.WriteLine(register(ref fam));
+            //
+            int x = 10, sum, raz;
+            arifm(x,15, out sum, out raz);
+            Console.WriteLine("Sum " + sum);
+            Console.WriteLine("Dif " + raz);
+            //
+            int a, b;
+            Console.WriteLine("Input a & b");
+            a = Convert.ToInt32(Console.ReadLine());
+            b = Convert.ToInt32(Console.ReadLine());
+            square1(a, b);
+            square2(a, b);
+            //
+            double num;
+            num = 7734.0 / 17.0;
+            Console.WriteLine(num);
+            Console.WriteLine("{0} {1}",Math.Truncate(num), Math.Truncate((num - Math.Truncate(num))*Math.Pow(10.0,(Convert.ToString(num).Length)-Convert.ToString(Math.Truncate(num)).Length)));
+            //
+            Console.WriteLine(optparam(4, 2, 5, 7));
+            Console.WriteLine(optparam(1, 3, 2));
+            Console.WriteLine(optparam(3, 2));
+            
+            //
+            int month_start, month_end, power_horse;
+            Console.WriteLine("Input number of start month:");
+            month_start = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Input number of end month:");
+            month_end = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Input horse power of engine:");
+            power_horse = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(transport(month_start, month_end, power_horse));
+            //
+            add(1, 2, 3, 4, 5);
+            int[] array = new int[] { 1, 2, 3, 4 };
+            add(array);
+            add();
+            //
+            int[] arr = { 1, 4, 5 };
+            Console.WriteLine("In main\nbefore\nfirst {0}\nlength {1}", arr[0], arr.Length);
+            change(arr);
+            Console.WriteLine("In main\nafter\nfirst {0}\nlength {1}", arr[0], arr.Length);*/
+            //
+            Console.WriteLine(Factorial(20));
+            //
+            Console.ReadKey();
+        }
+
+        static long Factorial(long  p)
+        {
+            if (p == 0)
+                return 1;
+            else
+                return p * Factorial(p - 1);
+        }
+
+        static void change(int[] arr)
+        {
+            arr[0] = 8;
+            arr = new int[5] { -3, -1, -2, -3, -4 };
+            Console.WriteLine("In method\nfirst {0}\nlength {1}", arr[0], arr.Length);
+        }
+
+        static void add(params int[] num)
+        {
+            int result = 0;
+            for (int i = 0; i < num.Length; i++)
+            {
+                result += num[i];
+            }
+            Console.WriteLine(result);
+        }
+
+        static double transport(int month_start, int month_end, int power_horse)
+        {
+            int rate;
+            double payment;
+            if (power_horse <= 100)
+                rate = 15;
+            else if (power_horse > 100 && power_horse <= 150)
+                rate = 28;
+            else if (power_horse > 150 && power_horse <= 200)
+                rate = 50;
+            else if (power_horse > 200 && power_horse <= 250)
+                rate = 75;
+            else
+                rate = 150;
+            if (month_end == 12)
+                return payment = rate * (power_horse * (13 - month_start) / 12);
+            else
+                return payment = rate * (power_horse * ((month_end+1) - month_start) / 12);
+        }
+
+        static int optparam(int a, int b, int c=5, int d=4)
+        {
+            return a + b + c + d;
+        }
+
+        static void square2(int a, int b)
+        {
+            Console.WriteLine("square {0}", (a + b)*2);
+        }
+
+        static void square1(int a, int b)
+        {
+            Console.WriteLine("square {0}", a * b);
+        }
+
+        static void arifm(int x, int p, out int sum, out int raz)
+        {
+            sum = x + p;
+            raz = x - p;
+        }
+
+        static string register(ref string fam)
+        {
+            return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fam);
+        }
+
+        static void addref(ref int a, int b)
+        {
+            a += b;
+            Console.WriteLine("x+y={0}", a);
+        }
+
+        static void addval(int a, int b)
+        {
+            a += b;
+            Console.WriteLine("x+y={0}", a);
+        }
+
+        static double circ_sq(int radius)
+        {
+            return PI() * radius * radius;
+        }
+
+        static double circ_len(int radius)
+        {
+            return 2 * PI() * radius;
+        }
+
+        static int Determinant(int[,] matrix)
+        {
+            return matrix[0, 0] * matrix[1, 1] - matrix[0, 1] * matrix[1, 0];
+        }
+
+        static string TrimStr(string str, int p)
+        {
+            if (str == null)
+                return string.Empty;
+            if (str.Length <= p)
+                return str;
+            return str.Substring(0, p) + "...";
+        }
+
+        static double PI()
+        {
+            return 3.1415926535;
+        }
+
+        static void Salutation2(string p1, string p2)
+        {
+            Console.WriteLine("{0}{1}", p1, p2);
+        }
+
+        static void Salutation1()
+        {
+            Console.WriteLine("Hello, World!");
+        }
+
+    }
+}
